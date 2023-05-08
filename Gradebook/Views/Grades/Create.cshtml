@@ -1,0 +1,130 @@
+﻿@model Gradebook.Models.Gradebook.Grade
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    select,
+    input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+    }
+
+    button[type="submit"] {
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    a.create-link {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+        a.create-link:hover {
+            background-color: #45a049;
+        }
+
+    table {
+        width: 100%;
+        background-color: #fff;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    a.action-link {
+        color: #007bff;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+</style>
+
+<h1>Create</h1>
+
+<h4>Grade</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Grade1" class="control-label"></label>
+                <input asp-for="Grade1" class="form-control" />
+                <span asp-validation-for="Grade1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

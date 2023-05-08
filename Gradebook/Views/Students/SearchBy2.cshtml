@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Gradebook.Models.Gradebook.Student>
+
+@{
+    ViewData["Title"] = "SearchBy2";
+}
+
+<style>
+    /* CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    select,
+    input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+    }
+
+    button[type="submit"] {
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    a.create-link {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+        a.create-link:hover {
+            background-color: #45a049;
+        }
+
+    table {
+        width: 100%;
+        background-color: #fff;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    a.action-link {
+        color: #007bff;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+</style>
+
+<h1>Students</h1>
+
+<p>
+    <form action="/Students/SearchBy2" method="post">
+        <select name="email">
+            <option value="ALL">ALL</option>
+            @foreach (var item in ViewBag.Segment)
+            {
+                <option value=@item> @item</option>
+            }
+        </select>
+        <input type="text" name="name" />
+        <button type="submit">Submit</button>
+    </form>
+    <a asp-action="Create" class="create-link" style="margin-left: 590px">Create New</a>
+
+</p>
+<p>
+    <a asp-action="StudentsAndTheirGrades" class="create-link">Students and their grades</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
