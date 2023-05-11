@@ -81,7 +81,7 @@ namespace Gradebook.Controllers
         public IActionResult SearchBy2()
         {
             var students = _context.Students.ToList();
-            ViewBag.Email = students.Select(m => m.Email).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Email = students.Select(m => m.Email).Distinct().ToList();
             return View(students);
 
         }
